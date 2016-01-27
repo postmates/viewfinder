@@ -1,0 +1,161 @@
+
+{
+    "fileExtensions": [".less"],
+
+    "excludedFiles": [],
+
+    "attributeQuotes": {
+        "enabled": true,
+        "style": "single"
+    },
+
+    "borderZero": {
+        "enabled": true,
+        "style": "none"
+    },
+
+    "decimalZero": {
+        "enabled": true,
+        "style": "leading"
+    },
+
+    "duplicateProperty": {
+        "enabled": true,
+        "exclude": []
+    },
+
+    "emptyRule": {
+        "enabled": true
+    },
+
+    "finalNewline": {
+        "enabled": true
+    },
+
+    "hexLength": {
+        "enabled": false,
+        "style": "long"
+    },
+
+    "hexNotation": {
+        "enabled": false,
+        "style": "lowercase"
+    },
+
+    "hexValidation": {
+        "enabled": true
+    },
+
+    "idSelector": {
+        "enabled": true,
+        "exclude": []
+    },
+
+    "importantRule": {
+        "enabled": true
+    },
+
+    "importPath": {
+        "enabled": true,
+        "exclude": [],
+        "filenameExtension": false,
+        "leadingUnderscore": false
+    },
+
+    "propertyOrdering": {
+        "enabled": false
+    },
+
+    "propertyUnits": {
+        "enabled": true,
+        "valid": [
+            "pt", "px", "vw",
+            "deg", "rad", "ms", "s",
+            "Hz", "kHz", "dpi", "%"
+        ],
+        "properties": {}
+    },
+
+    "qualifyingElement": {
+        "enabled": true,
+        "allowWithId": false,
+        "allowWithClass": true,
+        "allowWithAttribute": true
+    },
+
+    "selectorNaming": {
+        "enabled": false,
+        "disallowUppercase": true,
+        "disallowUnderscore": true
+    },
+
+    "singleLinePerProperty": {
+        "enabled": true
+    },
+
+    "singleLinePerSelector": {
+        "enabled": true
+    },
+
+    "spaceAfterComma": {
+        "enabled": true,
+        "style": "one_space"
+    },
+
+    "spaceAfterPropertyColon": {
+        "enabled": true,
+        "style": "one_space"
+    },
+
+    "spaceAfterPropertyName": {
+        "enabled": true,
+        "style": "no_space"
+    },
+
+    "spaceAfterPropertyValue": {
+        "enabled": true,
+        "style": "no_space"
+    },
+
+    "spaceBeforeBrace": {
+        "enabled": true,
+        "style": "one_space"
+    },
+
+    "spaceBeforeComma": {
+        "enabled": true,
+        "style": "no_space"
+    },
+
+    "spaceBetweenParens": {
+        "enabled": true,
+        "style": "no_space"
+    },
+
+    "stringQuotes": {
+        "enabled": true,
+        "style": "single"
+    },
+
+    "trailingSemicolon": {
+        "enabled": true
+    },
+
+    "trailingWhitespace": {
+        "enabled": true
+    },
+
+    "urlFormat": {
+        "enabled": true,
+        "style": "relative"
+    },
+
+    "urlQuotes": {
+        "enabled": true
+    },
+
+    "zeroUnit": {
+        "enabled": true,
+        "style": "no_unit"
+    }
+}
