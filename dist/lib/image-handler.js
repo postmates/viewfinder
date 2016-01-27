@@ -254,35 +254,24 @@ var ImageHandler = function () {
     }, {
         key: 'out',
         value: function out() {
-            var t = this.hardTranslate();
-            var zoom = this._zoom,
-                cb = undefined,
-                canvas = undefined,
-                ctx = undefined;
+            var _zoom = arguments.length <= 0 || arguments[0] === undefined ? 1 : arguments[0];
 
-            if (arguments.length === 2) {
-                zoom *= arguments.length <= 0 ? undefined : arguments[0];
-                cb = arguments.length <= 1 ? undefined : arguments[1];
-            } else {
-                cb = arguments.length <= 0 ? undefined : arguments[0];
-            }
+            var t = this.hardTranslate(),
+                canvas = document.createElement('canvas'),
+                zoom = this._zoom * _zoom;
+            var ctx = undefined;
 
-            if (typeof cb !== 'function') {
-                return;
-            }
-
-            canvas = document.createElement('canvas');
-            canvas.width = this.minWidth * zoom;
-            canvas.height = this.minHeight * zoom;
+            canvas.width = this.minWidth * _zoom;
+            canvas.height = this.minHeight * _zoom;
 
             ctx = canvas.getContext('2d');
             ctx.save();
-            ctx.translate((this.canvas.width - this.img.width * zoom) / 2 + t.x, (this.canvas.height - this.img.height * zoom) / 2 + t.y);
+            ctx.translate((canvas.width - this.img.width * zoom) / 2 + t.x * _zoom, (canvas.height - this.img.height * zoom) / 2 + t.y * _zoom);
             ctx.scale(zoom, zoom);
             ctx.drawImage(this.img, 0, 0);
             ctx.restore();
 
-            canvas.toBlob(cb, "image/png", 1);
+            return canvas.toDataURL('image/png');
         }
     }]);
 

@@ -235,37 +235,26 @@ class ImageHandler {
         this.drawScaledOriginal();
     }
 
-    out(...args) {
-        const t = this.hardTranslate();
-        let zoom = this._zoom,
-            cb, canvas, ctx;
+    out(_zoom = 1) {
+        const t = this.hardTranslate(),
+            canvas = document.createElement('canvas'),
+            zoom = this._zoom * _zoom;
+        let ctx;
 
-        if (args.length === 2) {
-            zoom *= args[0];
-            cb = args[1];
-        } else {
-            cb = args[0];
-        }
-
-        if (typeof cb !== 'function') {
-            return;
-        }
-
-        canvas = document.createElement('canvas');
-        canvas.width = this.minWidth * zoom;
-        canvas.height = this.minHeight * zoom;
+        canvas.width = this.minWidth * _zoom;
+        canvas.height = this.minHeight * _zoom;
 
         ctx = canvas.getContext('2d');
         ctx.save();
         ctx.translate(
-            (this.canvas.width - (this.img.width * zoom)) / 2 + t.x,
-            (this.canvas.height - (this.img.height * zoom)) / 2 + t.y
+            (canvas.width - (this.img.width * zoom)) / 2 + t.x * _zoom,
+            (canvas.height - (this.img.height * zoom)) / 2 + t.y * _zoom
         );
         ctx.scale(zoom, zoom);
         ctx.drawImage(this.img, 0, 0);
         ctx.restore();
 
-        canvas.toBlob(cb, "image/png", 1);
+        return canvas.toDataURL('image/png');
     }
 }
 

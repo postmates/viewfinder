@@ -18,11 +18,11 @@ var _dropZone = require('./views/drop-zone.js');
 
 var _dropZone2 = _interopRequireDefault(_dropZone);
 
-var _eventTravel = require('../lib/event-travel.js');
+var _eventTravel = require('./lib/event-travel.js');
 
 var _eventTravel2 = _interopRequireDefault(_eventTravel);
 
-var _imageHandler = require('../lib/image-handler.js');
+var _imageHandler = require('./lib/image-handler.js');
 
 var _imageHandler2 = _interopRequireDefault(_imageHandler);
 
