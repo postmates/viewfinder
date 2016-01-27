@@ -54,10 +54,12 @@ class Viewfinder extends React.Component {
 
         this.image.scaledOriginal
             .style.marginLeft = ((this.image.img.width *
-                this.image._zoom / -2) + translate.x) * this.props.scale;
+                this.image._zoom / -2) + translate.x) *
+                this.props.scale + 'px';
         this.image.scaledOriginal
             .style.marginTop = ((this.image.img.height *
-                this.image._zoom / -2) + translate.y) * this.props.scale;
+                this.image._zoom / -2) + translate.y) *
+                this.props.scale + 'px';
     }
 
     down(evt) {
