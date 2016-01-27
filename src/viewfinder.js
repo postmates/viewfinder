@@ -171,7 +171,7 @@ class Viewfinder extends React.Component {
         }
 
         return (
-            <div className="image-preview-upload"
+            <div className="viewfinder"
                 onMouseDown={ this.down.bind(this) }
                 onWheel={ this.onScroll.bind(this) } >
                 <DropZone onDrop={ this.onDrop.bind(this) } />
