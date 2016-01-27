@@ -17,10 +17,18 @@ if (process.env.BROWSER) {
 
 class App extends React.Component {
     save() {
-        // the first export parameter will scale the
-        // image in the DOM by this much before exporting
-        this.image.export(1.25, function(png) {
-            // send the png file to the server
+        // the first parameter will scale the image in
+        // the DOM by this much before exporting
+        this.image.out(1.25, function(png) {
+            // lets download it
+            const a = document.createElement("a");
+            a.style.display = "none";
+            document.body.appendChild(a);
+
+            a.href = window.URL.createObjectURL(blob);
+            a.download = 'cropped-image.png';
+            a.click();
+            window.URL.revokeObjectURL(url);
         });
     }
 

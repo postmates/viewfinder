@@ -234,6 +234,39 @@ class ImageHandler {
         this.draw();
         this.drawScaledOriginal();
     }
+
+    out(...args) {
+        const t = this.hardTranslate();
+        let zoom = this._zoom,
+            cb, canvas, ctx;
+
+        if (args.length === 2) {
+            zoom *= args[0];
+            cb = args[1];
+        } else {
+            cb = args[0];
+        }
+
+        if (typeof cb !== 'function') {
+            return;
+        }
+
+        canvas = document.createElement('canvas');
+        canvas.width = this.minWidth * zoom;
+        canvas.height = this.minHeight * zoom;
+
+        ctx = canvas.getContext('2d');
+        ctx.save();
+        ctx.translate(
+            (this.canvas.width - (this.img.width * zoom)) / 2 + t.x,
+            (this.canvas.height - (this.img.height * zoom)) / 2 + t.y
+        );
+        ctx.scale(zoom, zoom);
+        ctx.drawImage(this.img, 0, 0);
+        ctx.restore();
+
+        canvas.toBlob(cb, "image/png", 1);
+    }
 }
 
 export default ImageHandler;
