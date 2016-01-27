@@ -10,7 +10,7 @@
   "license": "MIT",
   "main": "dist/viewfinder.js",
   "files": [
-    "css"
+    "dist"
   ],
   "style": "dist/viewfinder.css",
   "keywords": [
