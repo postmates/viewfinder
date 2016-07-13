@@ -25,20 +25,6 @@ class Viewfinder extends React.Component {
         this.boundEnd = this.end.bind(this);
     }
 
-    componentDidMount() {
-        this.node = ReactDOM.findDOMNode(this);
-        this.node.appendChild(this.image.scaledOriginal);
-        this.image.scaledOriginal.style.transform = 'scale(' +
-            this.props.scale + ')';
-        this.node.appendChild(this.image.canvas);
-
-        this.enterCounter = 0;
-        this.image.minSize(
-            this.node.offsetWidth,
-            this.node.offsetHeight
-        );
-    }
-
     updateImage() {
         const translate = this.image.hardTranslate();
 
@@ -46,6 +32,10 @@ class Viewfinder extends React.Component {
             this.setState({
                 loading: false
             });
+        }
+
+        if (typeof this.props.onChange === 'function') {
+            this.props.onChange(this.image.scaledOriginal);
         }
 
         if (!this.node) {
@@ -165,6 +155,24 @@ class Viewfinder extends React.Component {
         }
     }
 
+    onStuff(elem) {
+        if (!elem) {
+            return;
+        }
+
+        this.node = elem;
+        this.node.appendChild(this.image.scaledOriginal);
+        this.image.scaledOriginal.style.transform = 'scale(' +
+            this.props.scale + ')';
+        this.node.appendChild(this.image.canvas);
+
+        this.enterCounter = 0;
+        this.image.minSize(
+            this.node.offsetWidth,
+            this.node.offsetHeight
+        );
+    }
+
     render() {
         let loader;
 
@@ -174,6 +182,7 @@ class Viewfinder extends React.Component {
 
         return (
             <div className="viewfinder"
+                ref={ this.onStuff.bind(this) }
                 onMouseDown={ this.down.bind(this) }
                 onWheel={ this.onScroll.bind(this) } >
                 <DropZone onDrop={ this.onDrop.bind(this) } />

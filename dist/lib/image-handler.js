@@ -1,10 +1,10 @@
 'use strict';
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -19,7 +19,7 @@ function observer() {
     };
 
     ret.fire = function () {
-        var ni = undefined;
+        var ni = void 0;
 
         for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
             args[_key] = arguments[_key];
@@ -31,7 +31,7 @@ function observer() {
     };
 
     ret.remove = function (cb) {
-        var ni = undefined;
+        var ni = void 0;
 
         for (ni = 0; ni < cache.length; ni++) {
             if (cache[ni] === cb) {
@@ -104,7 +104,7 @@ var ImageHandler = function () {
     }, {
         key: 'drawScaledOriginal',
         value: function drawScaledOriginal() {
-            var ctx = undefined;
+            var ctx = void 0;
 
             this.scaledOriginal.width = this.img.width * this._zoom;
             this.scaledOriginal.height = this.img.height * this._zoom;
@@ -175,7 +175,7 @@ var ImageHandler = function () {
     }, {
         key: 'hardZoom',
         value: function hardZoom() {
-            var zoom = undefined;
+            var zoom = void 0;
 
             if (!this.img) {
                 return;
@@ -259,7 +259,7 @@ var ImageHandler = function () {
             var t = this.hardTranslate(),
                 canvas = document.createElement('canvas'),
                 zoom = this._zoom * _zoom;
-            var ctx = undefined;
+            var ctx = void 0;
 
             canvas.width = this.minWidth * _zoom;
             canvas.height = this.minHeight * _zoom;

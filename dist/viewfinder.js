@@ -1,10 +1,10 @@
 'use strict';
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
@@ -51,6 +51,7 @@ var Viewfinder = function (_React$Component) {
             moving: false
         };
 
+
         _this.image = new _imageHandler2.default();
         _this.image.change(_this.updateImage.bind(_this));
 
@@ -60,17 +61,6 @@ var Viewfinder = function (_React$Component) {
     }
 
     _createClass(Viewfinder, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            this.node = _reactDom2.default.findDOMNode(this);
-            this.node.appendChild(this.image.scaledOriginal);
-            this.image.scaledOriginal.style.transform = 'scale(' + this.props.scale + ')';
-            this.node.appendChild(this.image.canvas);
-
-            this.enterCounter = 0;
-            this.image.minSize(this.node.offsetWidth, this.node.offsetHeight);
-        }
-    }, {
         key: 'updateImage',
         value: function updateImage() {
             var translate = this.image.hardTranslate();
@@ -81,12 +71,16 @@ var Viewfinder = function (_React$Component) {
                 });
             }
 
+            if (typeof this.props.onChange === 'function') {
+                this.props.onChange(this.image.scaledOriginal);
+            }
+
             if (!this.node) {
                 return;
             }
 
-            this.image.scaledOriginal.style.marginLeft = (this.image.img.width * this.image._zoom / -2 + translate.x) * this.props.scale;
-            this.image.scaledOriginal.style.marginTop = (this.image.img.height * this.image._zoom / -2 + translate.y) * this.props.scale;
+            this.image.scaledOriginal.style.marginLeft = (this.image.img.width * this.image._zoom / -2 + translate.x) * this.props.scale + 'px';
+            this.image.scaledOriginal.style.marginTop = (this.image.img.height * this.image._zoom / -2 + translate.y) * this.props.scale + 'px';
         }
     }, {
         key: 'down',
@@ -157,7 +151,7 @@ var Viewfinder = function (_React$Component) {
     }, {
         key: 'onDrop',
         value: function onDrop(evt) {
-            var files = undefined;
+            var files = void 0;
 
             this.setState({
                 loading: false
@@ -191,11 +185,26 @@ var Viewfinder = function (_React$Component) {
             }
         }
     }, {
+        key: 'onStuff',
+        value: function onStuff(elem) {
+            if (!elem) {
+                return;
+            }
+
+            this.node = elem;
+            this.node.appendChild(this.image.scaledOriginal);
+            this.image.scaledOriginal.style.transform = 'scale(' + this.props.scale + ')';
+            this.node.appendChild(this.image.canvas);
+
+            this.enterCounter = 0;
+            this.image.minSize(this.node.offsetWidth, this.node.offsetHeight);
+        }
+    }, {
         key: 'render',
         value: function render() {
             var _this2 = this;
 
-            var loader = undefined;
+            var loader = void 0;
 
             if (this.state.loading) {
                 loader = _react2.default.createElement(
@@ -208,6 +217,7 @@ var Viewfinder = function (_React$Component) {
             return _react2.default.createElement(
                 'div',
                 { className: 'viewfinder',
+                    ref: this.onStuff.bind(this),
                     onMouseDown: this.down.bind(this),
                     onWheel: this.onScroll.bind(this) },
                 _react2.default.createElement(_dropZone2.default, { onDrop: this.onDrop.bind(this) }),
