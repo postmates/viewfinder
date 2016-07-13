@@ -72,7 +72,7 @@ var Viewfinder = function (_React$Component) {
             }
 
             if (typeof this.props.onChange === 'function') {
-                this.props.onChange(this.image.scaledOriginal);
+                this.props.onChange(this.image);
             }
 
             if (!this.node) {

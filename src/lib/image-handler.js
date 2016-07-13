@@ -254,7 +254,7 @@ class ImageHandler {
         ctx.drawImage(this.img, 0, 0);
         ctx.restore();
 
-        return canvas.toDataURL('image/png');
+        return canvas;
     }
 }
 
